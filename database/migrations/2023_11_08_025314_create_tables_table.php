@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tables', function (Blueprint $table) {
+        Schema::create('restaurant_tables', function (Blueprint $table) {
             $table->id('tableID');
             $table->unsignedBigInteger('restaurantID');
             $table->enum('status', ['Occupied', 'Vacant']);

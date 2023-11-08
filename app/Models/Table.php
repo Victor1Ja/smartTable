@@ -10,7 +10,7 @@ class Table extends Model
     use HasFactory;
 
     // Define the table associated with the model
-    protected $table = 'tables';
+    protected $table = 'restaurant_tables';
 
     // Define the primary key field
     protected $primaryKey = 'tableID';
