@@ -7,13 +7,13 @@ A digital menu app built with Laravel that allows restaurants to offer contactle
 ### Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/smart-menu-app.git
+git clone https://github.com/Victor1Ja/smartTable
 ```
 
 ### Navigate to the project folder:
 
 ```bash
-    cd smart-menu-app
+    cd smartTable
 ```
 
 ### Install Composer dependencies:
