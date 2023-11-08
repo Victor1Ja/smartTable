@@ -17,9 +17,9 @@ class TableFactory extends Factory
     public function definition(): array
     {
         return [
-            'RestaurantID' => $this->faker->randomDigit,
-            'Status' => $this->faker->word,
-            'Location' => $this->faker->word,
+            'restaurantID' => $this->faker->randomDigit,
+            'status' => $this->faker->word,
+            'location' => $this->faker->word,
         ];
     }
 }

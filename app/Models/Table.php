@@ -13,18 +13,18 @@ class Table extends Model
     protected $table = 'tables';
 
     // Define the primary key field
-    protected $primaryKey = 'TableID';
+    protected $primaryKey = 'tableID';
 
     // Define the fillable fields for mass assignment
     protected $fillable = [
-        'RestaurantID',
-        'Status',
-        'Location',
+        'restaurantID',
+        'status',
+        'location',
     ];
 
     // Define the relationship with the Restaurant model
     public function restaurant()
     {
-        return $this->belongsTo(Restaurant::class, 'RestaurantID');
+        return $this->belongsTo(Restaurant::class, 'restaurantID');
     }
 }

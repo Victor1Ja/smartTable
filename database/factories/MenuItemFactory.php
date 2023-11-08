@@ -17,12 +17,12 @@ class MenuItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'RestaurantID' => $this->faker->randomDigit,
-            'Name' => $this->faker->word,
-            'Description' => $this->faker->word,
-            'Price' => $this->faker->randomDigit,
-            'Category' => $this->faker->word,
-            'Image' => $this->faker->word,
+            'restaurantID' => $this->faker->randomDigit,
+            'name' => $this->faker->word,
+            'description' => $this->faker->word,
+            'price' => $this->faker->randomDigit,
+            'category' => $this->faker->word,
+            'image' => $this->faker->word,
         ];
     }
 }
