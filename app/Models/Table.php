@@ -20,6 +20,7 @@ class Table extends Model
         'restaurantID',
         'status',
         'location',
+        'qrCode',
     ];
 
     // Define the relationship with the Restaurant model

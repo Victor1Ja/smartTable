@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('restaurantID');
             $table->enum('status', ['Occupied', 'Vacant']);
             $table->string('location')->nullable();
+            $table->uuid('qrCode')->unique();
             $table->timestamps();
             
             // Define foreign key relationship with the Restaurant model

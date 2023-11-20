@@ -20,6 +20,7 @@ class TableFactory extends Factory
             'restaurantID' => $this->faker->randomDigit,
             'status' => $this->faker->word,
             'location' => $this->faker->word,
+            'qrCode' => $this->faker->uuid,
         ];
     }
 }
