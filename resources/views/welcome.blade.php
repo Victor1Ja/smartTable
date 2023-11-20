@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Welcome to Restaurant Management System</title>
-</head>
-<body>
-    <h1>Welcome to Restaurant Management System</h1>
-    <p>This app is currently in the development stage.</p>
-    <!-- Add more content here as needed -->
-</body>
-</html>
+<x-site-layout title="Welcome" >
+
+    <h2 class="font-bold">All Restaurants </h2>
+    <div class="grid grid-cols-3 gap-4">
+        @foreach($restaurants as $restaurant)
+            <div>
+                {{$restaurant->name }}
+            </div>
+        @endforeach
+    </div>
+</x-site-layout>

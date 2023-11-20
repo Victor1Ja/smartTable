@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
     public function welcome()
     {
-        return view('welcome', [
-            'appStatus' => 'Development Stage',
-        ]);
+        $restaurants = Restaurant::all();
+        return view('welcome', compact('restaurants'));
     }
 }
