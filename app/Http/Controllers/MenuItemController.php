@@ -8,17 +8,17 @@ use App\Models\MenuItem;
 class MenuItemController extends Controller
 {
     // Index method to list all menu items
-    public function index()
+    public function index($restaurantId)
     {
-        $menuItems = MenuItem::all();
-        return view('menuItems.index', compact('menuItems'));
+        $menuItems = MenuItem::all()->where('restaurantID', $restaurantId);
+        return view('home.menuItems.index', compact('menuItems'));
     }
 
     // Show method to display a specific menu item
     public function show($id)
     {
-        $menuItem = MenuItem::find($id);
-        return view('menuItems.show', compact('menuItem'));
+        $menuItem = MenuItem::find($id)->loadMissing('restaurant');
+        return view('home.menuItems.show', compact('menuItem'));
     }
 
     // Create method to show the create form
