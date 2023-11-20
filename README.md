@@ -2,6 +2,8 @@
 
 A digital menu app built with Laravel that allows restaurants to offer contactless dining experiences for their customers. Customers can scan QR codes to access the restaurant's digital menu, place orders, and make payments conveniently. The app also provides order management and analytics for restaurant owners.
 
+To check the todo list for this project, click [here](TODO.md).
+
 ## Installation
 
 ### Clone this repository to your local machine:
