@@ -13,7 +13,7 @@ class Table extends Model
     protected $table = 'restaurant_tables';
 
     // Define the primary key field
-    protected $primaryKey = 'tableID';
+    protected $primaryKey = 'id';
 
     // Define the fillable fields for mass assignment
     protected $fillable = [

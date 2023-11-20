@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('menu_items', function (Blueprint $table) {
-            $table->id('itemID');
+            $table->id('id');
             $table->unsignedBigInteger('restaurantID');
             $table->string('name');
             $table->text('description');
@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('category');
             $table->string('image')->nullable();
             $table->timestamps();
-            
+
             // Define foreign key relationship with the Restaurant model
-            $table->foreign('restaurantID')->references('restaurantID')->on('restaurants');
+            $table->foreign('restaurantID')->references('id')->on('restaurants');
         });
     }
 

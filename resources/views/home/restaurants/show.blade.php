@@ -29,7 +29,7 @@
 
         <!-- Menu Link -->
         <!-- Add route('menus.show', ['restaurant' => $restaurant->id]) -->
-        <a class="mt-4 text-blue-500 hover:underline" href="#">View Menu</a>
+        <a class="mt-4 text-blue-500 hover:underline" href="{{route('menuItems.index', ['id' => $restaurant->id])}}">View Menu</a>
 
         <!-- User-specific Links (Logged In) -->
         @auth

@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('restaurant_tables', function (Blueprint $table) {
-            $table->id('tableID');
+            $table->id('id');
             $table->unsignedBigInteger('restaurantID');
             $table->enum('status', ['Occupied', 'Vacant'])->default('Vacant');
             $table->string('location')->nullable();
             $table->uuid('qrCode')->unique();
             $table->timestamps();
-            
+
             // Define foreign key relationship with the Restaurant model
-            $table->foreign('restaurantID')->references('restaurantID')->on('restaurants');
+            $table->foreign('restaurantID')->references('id')->on('restaurants');
         });
     }
 

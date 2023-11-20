@@ -13,8 +13,8 @@ class MenuItem extends Model
     protected $table = 'menu_items';
 
     // Define the primary key field
-    protected $primaryKey = 'ItemID';
-    
+    protected $primaryKey = 'id';
+
     // Define the fillable fields for mass assignment
     protected $fillable = [
         'restaurantID',
@@ -24,7 +24,7 @@ class MenuItem extends Model
         'category',
         'image',
     ];
-    
+
     // Define the relationship with the Restaurant model
     public function restaurant()
     {

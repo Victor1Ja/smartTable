@@ -13,7 +13,7 @@ class Restaurant extends Model
     protected $table = 'restaurants';
 
     // Define the primary key field
-    protected $primaryKey = 'restaurantID';
+    protected $primaryKey = 'id';
 
     // Define the fillable fields for mass assignment
     protected $fillable = [
@@ -26,11 +26,11 @@ class Restaurant extends Model
     // Define the relationship with Table and Menu Item models
     public function tables()
     {
-        return $this->hasMany(Table::class, 'restaurantID');
+        return $this->hasMany(Table::class, 'id');
     }
 
     public function menuItems()
     {
-        return $this->hasMany(MenuItem::class, 'restaurantID');
+        return $this->hasMany(MenuItem::class, 'id');
     }
 }
