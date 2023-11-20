@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('restaurant_tables', function (Blueprint $table) {
             $table->id('tableID');
             $table->unsignedBigInteger('restaurantID');
-            $table->enum('status', ['Occupied', 'Vacant']);
+            $table->enum('status', ['Occupied', 'Vacant'])->default('Vacant');
             $table->string('location')->nullable();
             $table->uuid('qrCode')->unique();
             $table->timestamps();
