@@ -11,20 +11,20 @@ class RestaurantController extends Controller
     public function index()
     {
         $restaurants = Restaurant::all();
-        return view('restaurants.index', compact('restaurants'));
+        return view('home.restaurants.index', compact('restaurants'));
     }
 
     // Show method to display a specific restaurant
     public function show($id)
     {
         $restaurant = Restaurant::find($id);
-        return view('restaurants.show', compact('restaurant'));
+        return view('home.restaurants.show', compact('restaurant'));
     }
 
     // Create method to show the create form
     public function create()
     {
-        return view('restaurants.create');
+        return view('home.restaurants.create');
     }
 
     // Store method to save a new restaurant
@@ -37,7 +37,7 @@ class RestaurantController extends Controller
     public function edit($id)
     {
         $restaurant = Restaurant::find($id);
-        return view('restaurants.edit', compact('restaurant'));
+        return view('home.restaurants.edit', compact('restaurant'));
     }
 
     // Update method to update a specific restaurant
