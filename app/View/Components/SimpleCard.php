@@ -11,7 +11,7 @@ class SimpleCard extends Component
     public $imageUrl = '';
     public $title;
     public $subtitle = '';
-    public $route = '';
+    public $url = '';
 
     /**
      * Create a new component instance.
@@ -19,18 +19,18 @@ class SimpleCard extends Component
      * @param string|null $imageUrl 
      * @param string $title
      * @param string|null $subtitle
-     * @param string|null $route 
+     * @param string|null $url 
      */
     public function __construct(
         $imageUrl = null,
         $title,
         $subtitle = null,
-        $route = null
+        $url = null
     ) {
         $this->imageUrl = $imageUrl ?? 'https://via.placeholder.com/640x480.png/00ff77?text=No+Image';
         $this->title = $title;
         $this->subtitle = $subtitle ?? '';
-        $this->route = $route ?? '/';
+        $this->url = $url ?? '/';
     }
 
     /**
@@ -38,7 +38,6 @@ class SimpleCard extends Component
      */
     public function render(): View|Closure|string
     {
-
         return view('components.simple-card');
     }
 }
