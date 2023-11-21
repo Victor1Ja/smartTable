@@ -12,6 +12,7 @@ class SimpleCard extends Component
     public $title;
     public $subtitle = '';
     public $url = '';
+    public $svg = '';
 
     /**
      * Create a new component instance.
@@ -25,12 +26,14 @@ class SimpleCard extends Component
         $imageUrl = null,
         $title,
         $subtitle = null,
-        $url = null
+        $url = null,
+        $svg = null
     ) {
         $this->imageUrl = $imageUrl ?? 'https://via.placeholder.com/640x480.png/00ff77?text=No+Image';
         $this->title = $title;
         $this->subtitle = $subtitle ?? '';
         $this->url = $url ?? '/';
+        $this->svg = $svg;
     }
 
     /**
