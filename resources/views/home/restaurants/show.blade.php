@@ -28,8 +28,10 @@
         </p>
 
         <!-- Menu Link -->
-        <!-- Add route('menus.show', ['restaurant' => $restaurant->id]) -->
         <a class="mt-4 text-blue-500 hover:underline" href="{{route('menuItems.index', ['id' => $restaurant->id])}}">View Menu</a>
+
+        <!-- Tables Link -->
+        <a class="mt-4 text-blue-500 hover:underline" href="{{route('tables.index', ['id' => $restaurant->id])}}">View Tables</a>
 
         <!-- User-specific Links (Logged In) -->
         @auth

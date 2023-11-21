@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('restaurant_tables', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('restaurantID');
+            $table->unsignedInteger('number')->nullable();
             $table->enum('status', ['Occupied', 'Vacant'])->default('Vacant');
             $table->string('location')->nullable();
             $table->uuid('qrCode')->unique();

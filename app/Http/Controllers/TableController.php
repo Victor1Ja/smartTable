@@ -2,23 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MenuItem;
 use Illuminate\Http\Request;
 use App\Models\Table;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class TableController extends Controller
 {
     // Index method to list all tables
-    public function index()
+    public function index($id)
     {
-        $tables = Table::all();
-        return view('tables.index', compact('tables'));
+        $from = [255, 0, 0];
+        $to = [0, 0, 255];
+        $tables = Table::all()->where('restaurantID', $id);
+        $number = 0;
+        foreach ($tables as $table) {
+            $table->svgQr = QrCode::size(256)
+                ->style('dot')
+                ->eye('circle')
+                ->margin(1)
+                ->generate(
+                    route('tables.show', ['id' => $table->id])
+                );
+            $table->number = $number + 1;
+            $number = $number + 1;
+        }
+        return view('home.tables.index', compact('tables'));
+    }
+    public function downloadQr($id)
+    {
+        function down($id)
+        {
+            echo QrCode::size(256)
+                ->style('dot')
+                ->eye('circle')
+                ->margin(1)
+                ->format('png')
+                ->generate(
+                    route('tables.show', ['id' => $id])
+                );
+        }
+        return response()->streamDownload(
+            down($id),
+            'qr-code.png',
+            [
+                'Content-Type' => 'image/png',
+            ]
+        );
     }
 
     // Show method to display a specific table
     public function show($id)
     {
-        $table = Table::find($id);
-        return view('tables.show', compact('table'));
+        $table = Table::all()->find($id)->loadMissing('restaurant');
+        $menuItems = MenuItem::all()->where('restaurantID', $table->restaurantID);
+
+        return view('home.tables.show', compact('table', 'menuItems'));
     }
 
     // Create method to show the create form
