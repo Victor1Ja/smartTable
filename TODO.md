@@ -5,7 +5,7 @@ I plan to do at least TODO 4 for HS module 3.
 ## 1. Base Setup
 
 -   [x] Find a suitable Laravel template for the smart menu app.
--   x ] Customize the template to match the branding and style of the app.
+-   [x] Customize the template to match the branding and style of the app.
 
 ## 2. Model CRUD Operations
 
@@ -14,22 +14,22 @@ I plan to do at least TODO 4 for HS module 3.
 
 ### 2.1 Restaurant Model
 
--   [ ] Create a Restaurant model
+-   [x] Create a Restaurant model
 -   [ ] Create CRUD operations for the Restaurant model.
 
 ### 2.2 Table Model
 
--   [ ] Create a Table model
+-   [x] Create a Table model
 -   [ ] Create CRUD operations for the Table model.
 
 ### 2.3 MenuItem Model
 
--   [ ] Create a MenuItem model
+-   [x] Create a MenuItem model
 -   [ ] Create CRUD operations for the MenuItem model.
 
 ## 3. QR Code Scanning/Table Page
 
--   [ ] Develop QR code scanning functionality for customers to access the menu.
+-   [x] Develop QR code scanning functionality for customers to access the menu.
 -   [ ] Create a dynamic table page that allows customers to view and order from the menu.
 
 ## 4. Admin Panel

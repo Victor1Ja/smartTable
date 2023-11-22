@@ -8,11 +8,11 @@ use Illuminate\View\Component;
 
 class SimpleCard extends Component
 {
-    public $imageUrl = '';
-    public $title;
-    public $subtitle = '';
-    public $url = '';
-    public $svg = '';
+    public string $imageUrl = '';
+    public string $title;
+    public string $subtitle = '';
+    public string $url = '';
+    public string $svg = '';
 
     /**
      * Create a new component instance.
@@ -23,11 +23,11 @@ class SimpleCard extends Component
      * @param string|null $url 
      */
     public function __construct(
-        $imageUrl = null,
-        $title,
-        $subtitle = null,
-        $url = null,
-        $svg = null
+        string $imageUrl = null,
+        string $title,
+        string $subtitle = null,
+        string $url = null,
+        string $svg = null
     ) {
         $this->imageUrl = $imageUrl ?? 'https://via.placeholder.com/640x480.png/00ff77?text=No+Image';
         $this->title = $title;

@@ -27,6 +27,6 @@ class SiteLayoutNavbar extends Component
 
     public function render(): View|Closure|string
     {
-        return view('components.site-layout-navbar');
+        return view('layout.site-layout-navbar');
     }
 }

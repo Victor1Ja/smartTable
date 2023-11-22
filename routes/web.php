@@ -30,6 +30,20 @@ Route::get('/menuItem/{id}', [\App\Http\Controllers\MenuItemController::class, '
 Route::get('/restaurants/{id}/table', [\App\Http\Controllers\TableController::class, 'index'])->name('tables.index');
 Route::get('/table/{id}', [\App\Http\Controllers\TableController::class, 'show'])->name('tables.show');
 
-// Auth routes
-Route::get('/register', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('register');
-Route::get('/login', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('login');
+require __DIR__ . '/auth.php';
+
+// Route::prefix('home')->name('home.')->middleware('auth')->group(function () {
+//     Route::resource('posts', \App\Http\Controllers\Home\PostController::class);
+//     Route::get('posts/{post}/toggle-publish', [\App\Http\Controllers\Home\PostTogglePublishController::class, 'toggle'])->name('posts.toggle-publish');
+// });
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+// Admin User routes
+// Route::name('admin.')->middleware(['auth', 'is.admin'])->group(function () {
+//     Route::resource('/admin/categories', \App\Http\Controllers\AdminCategoryController::class);
+// });
