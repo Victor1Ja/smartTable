@@ -30,7 +30,7 @@
         <div class="mt-4 space-x-4">
             <!-- Edit Menu Item Link -->
             <!-- route('menuItems.edit', ['menuItem' => $menuItem->id]) -->
-            <a class="text-blue-500 hover:underline" href="#">Edit Menu Item</a>
+            <a class="text-blue-500 hover:underline" href="{{route('home.menuItems.edit', ['menuItem' => $menuItem->id])}}">Edit Menu Item</a>
 
             <!-- Delete Menu Item Form -->
             <!--  route('menuItems.destroy', ['menuItem' => $menuItem->id])  -->

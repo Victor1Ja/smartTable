@@ -11,7 +11,7 @@ class MenuItemController extends Controller
     public function index($restaurantId)
     {
         $menuItems = MenuItem::all()->where('restaurantID', $restaurantId);
-        return view('home.menuItems.index', compact('menuItems'));
+        return view('home.menuItems.index', compact('menuItems', 'restaurantId'));
     }
 
     // Show method to display a specific menu item
@@ -22,28 +22,73 @@ class MenuItemController extends Controller
     }
 
     // Create method to show the create form
-    public function create()
+    public function create(Request $request)
     {
-        return view('menuItems.create');
+        $restaurantID = $request->restaurantID;
+        return view('home.menuItems.form', compact('restaurantID'));
     }
 
-    // Store method to save a new menu item
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        // Validation and store logic here
+        $request->validate([
+            'restaurantID' => 'required|exists:restaurants,id', // Ensure the restaurant exists
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'category' => 'required|string',
+            // 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional image upload
+        ]);
+
+
+        // Handle image upload if provided
+        // if ($request->hasFile('image')) {
+        //     $imagePath = $request->file('image')->store('menu_item_images', 'public');
+        // }
+        $menuItem = MenuItem::create($request->all());
+
+        return redirect()->route('menuItems.show', ['id' => $menuItem->id])->with('success', 'Menu item created successfully.');
     }
+
+
 
     // Edit method to show the edit form
     public function edit($id)
     {
         $menuItem = MenuItem::find($id);
-        return view('menuItems.edit', compact('menuItem'));
+        return view('home.menuItems.form', compact('menuItem'));
     }
 
-    // Update method to update a specific menu item
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\MenuItem  $menuItem
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, MenuItem $menuItem)
     {
-        // Validation and update logic here
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'category' => 'required|string',
+            // 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional image upload
+        ]);
+
+
+        // Handle image upload if provided
+        // if ($request->hasFile('image')) {
+        //     $imagePath = $request->file('image')->store('menu_item_images', 'public');
+        // }
+
+        $menuItem->update($request->all());
+        return redirect()->route('menuItems.show', ['id' => $menuItem->id])->with('success', 'Menu item updated successfully.');
     }
 
     // Delete method to remove a specific menu item

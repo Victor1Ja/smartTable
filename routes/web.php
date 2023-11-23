@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,8 +37,8 @@ require __DIR__ . '/auth.php';
 
 Route::prefix('home')->name('home.')->middleware('auth')->group(function () {
     Route::resource('restaurants', RestaurantController::class);
+    Route::resource('menuItems', MenuItemController::class);
     // Route::resource('table', \App\Http\Controllers\Home\TableController::class);
-    // Route::resource('menuItem', \App\Http\Controllers\Home\MenuItemController::class);
 });
 
 // Route::middleware('auth')->group(function () {
