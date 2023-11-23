@@ -18,9 +18,8 @@ class Table extends Model
     // Define the fillable fields for mass assignment
     protected $fillable = [
         'restaurantID',
-        'status',
         'location',
-        'qrCode',
+        'number'
     ];
 
     // Define the relationship with the Restaurant model

@@ -21,9 +21,8 @@ class TableFactory extends Factory
         $tablesAmount = Table::where('restaurantID', $restaurantId)->count();
         return [
             'restaurantID' => $restaurantId,
-            'number' => $tablesAmount + 1,
+            'number' => $this->faker->numberBetween(1, 100),
             'location' => $this->faker->word,
-            'qrCode' => $this->faker->uuid,
         ];
     }
 }

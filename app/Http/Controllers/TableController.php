@@ -15,6 +15,7 @@ class TableController extends Controller
         $from = [255, 0, 0];
         $to = [0, 0, 255];
         $tables = Table::all()->where('restaurantID', $id);
+        $restaurantId = $id;
         $number = 0;
         foreach ($tables as $table) {
             $table->svgQr = QrCode::size(256)
@@ -27,7 +28,7 @@ class TableController extends Controller
             $table->number = $number + 1;
             $number = $number + 1;
         }
-        return view('home.tables.index', compact('tables'));
+        return view('home.tables.index', compact('tables', 'restaurantId'));
     }
     public function downloadQr($id)
     {
@@ -55,36 +56,61 @@ class TableController extends Controller
     public function show($id)
     {
         $table = Table::all()->find($id)->loadMissing('restaurant');
+        $table->ray();
+
         $menuItems = MenuItem::all()->where('restaurantID', $table->restaurantID);
 
         return view('home.tables.show', compact('table', 'menuItems'));
     }
 
     // Create method to show the create form
-    public function create()
+    public function create(Request $request)
     {
-        return view('tables.create');
+        $restaurantId = $request->restaurantID;
+        return view('home.tables.form', compact('restaurantId'));
     }
 
-    // Store method to save a new table
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        // Validation and store logic here
+        $request->validate([
+            'restaurantID' => 'required|exists:restaurants,id', // Ensure the restaurant exists
+            'number' => 'required|integer',
+            'location' => 'nullable|string',
+        ]);
+        $table = Table::create($request->all());
+        return redirect()->route('welcome')->with('success', 'Restaurant table created successfully.');
     }
-
     // Edit method to show the edit form
     public function edit($id)
     {
         $table = Table::find($id);
-        return view('tables.edit', compact('table'));
+        return view('home.tables.form', compact('table'));
     }
 
-    // Update method to update a specific table
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Table  $table
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Table $table)
     {
-        // Validation and update logic here
-    }
+        $request->validate([
+            'number' => 'required|integer',
+            'location' => 'nullable|string',
+        ]);
 
+        $table->update($request->all());
+
+        return redirect()->route('tables.index')->with('success', 'Restaurant table updated successfully.');
+    }
     // Delete method to remove a specific table
     public function destroy($id)
     {

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MenuItemController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,14 +32,14 @@ Route::get('/menuItem/{id}', [\App\Http\Controllers\MenuItemController::class, '
 
 // Table routes
 Route::get('/restaurants/{id}/table', [\App\Http\Controllers\TableController::class, 'index'])->name('tables.index');
-Route::get('/table/{id}', [\App\Http\Controllers\TableController::class, 'show'])->name('tables.show');
+Route::get('/tables/{id}', [\App\Http\Controllers\TableController::class, 'show'])->name('tables.show');
 
 require __DIR__ . '/auth.php';
 
 Route::prefix('home')->name('home.')->middleware('auth')->group(function () {
     Route::resource('restaurants', RestaurantController::class);
     Route::resource('menuItems', MenuItemController::class);
-    // Route::resource('table', \App\Http\Controllers\Home\TableController::class);
+    Route::resource('tables', TableController::class);
 });
 
 // Route::middleware('auth')->group(function () {

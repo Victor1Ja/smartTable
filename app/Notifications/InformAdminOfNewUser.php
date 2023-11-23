@@ -35,7 +35,7 @@ class InformAdminOfNewUser extends Notification
             ->line('Name: ' . $this->user->name)
             ->line('Email: ' . $this->user->email)
             ->line('Registration Date: ' . $this->user->created_at->format('F j, Y \a\t h:i A'))
-            ->action('View User Profile', route('dashboard', $this->user))
+            ->action('View User Profile', route('', $this->user))
             ->line('Thanks for your prompt attention and excellent follow-up!');
     }
 

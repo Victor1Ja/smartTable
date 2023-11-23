@@ -24,26 +24,75 @@ class RestaurantController extends Controller
     // Create method to show the create form
     public function create()
     {
-        return view('home.restaurants.create');
+        return view('home.restaurants.form');
     }
 
-    // Store method to save a new restaurant
     public function store(Request $request)
     {
-        // Validation and store logic here
+        $request->validate([
+            'name' => ['required', 'min:3', 'max:255'],
+            'location' => ['required', 'min:3', 'max:255'],
+            'contactInformation' => ['required', 'min:5', 'max:255'],
+            'operatingHours' => ['required', 'min:5', 'max:255'],
+            // 'image' => ['file'],
+        ]);
+
+        // $imagePath = null;
+
+        // if ($request->hasFile('image')) {
+        //     $imagePath = $request->file('image')->store('restaurant_images', 'public');
+        // }
+
+        $restaurant = Restaurant::create([
+            'name' => $request->name,
+            'location' => $request->location,
+            'contactInformation' => $request->contactInformation,
+            'operatingHours' => $request->operatingHours,
+            // 'image_path' => $imagePath,
+            // Add more fields as needed
+        ]);
+
+        return redirect()->route('restaurants.show', ['id' => $restaurant->id])
+            ->with('success', 'Restaurant created successfully');
     }
 
     // Edit method to show the edit form
     public function edit($id)
     {
         $restaurant = Restaurant::find($id);
-        return view('home.restaurants.edit', compact('restaurant'));
+        return view('home.restaurants.form', compact('restaurant'));
     }
 
     // Update method to update a specific restaurant
     public function update(Request $request, $id)
     {
-        // Validation and update logic here
+        $restaurant = Restaurant::find($id);
+
+        $request->validate([
+            'name' => ['required', 'min:3', 'max:255'],
+            'location' => ['required', 'min:3', 'max:255'],
+            'contactInformation' => ['required', 'min:5', 'max:255'],
+            'operatingHours' => ['required', 'min:5', 'max:255'],
+            // 'image' => ['file'],
+        ]);
+
+        // $imagePath = null;
+
+        // if ($request->hasFile('image')) {
+        //     $imagePath = $request->file('image')->store('restaurant_images', 'public');
+        // }
+
+        $restaurant->update([
+            'name' => $request->name,
+            'location' => $request->location,
+            'contactInformation' => $request->contactInformation,
+            'operatingHours' => $request->operatingHours,
+            // 'image_path' => $imagePath
+            // Add more fields as needed
+        ]);
+
+        return redirect()->route('restaurants.show', ['id' => $restaurant->id])
+            ->with('success', 'Restaurant updated successfully');
     }
 
     // Delete method to remove a specific restaurant
