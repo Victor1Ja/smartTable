@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->na
 Route::get('/restaurants', [\App\Http\Controllers\RestaurantController::class, 'index'])->name('restaurants.index');
 Route::get('/restaurants/{id}', [\App\Http\Controllers\RestaurantController::class, 'show'])->name('restaurants.show');
 
+
 // MenuItem routes
 Route::get('/restaurants/{id}/menuItem', [\App\Http\Controllers\MenuItemController::class, 'index'])->name('menuItems.index');
 Route::get('/menuItem/{id}', [\App\Http\Controllers\MenuItemController::class, 'show'])->name('menuItems.show');
@@ -32,10 +34,11 @@ Route::get('/table/{id}', [\App\Http\Controllers\TableController::class, 'show']
 
 require __DIR__ . '/auth.php';
 
-// Route::prefix('home')->name('home.')->middleware('auth')->group(function () {
-//     Route::resource('posts', \App\Http\Controllers\Home\PostController::class);
-//     Route::get('posts/{post}/toggle-publish', [\App\Http\Controllers\Home\PostTogglePublishController::class, 'toggle'])->name('posts.toggle-publish');
-// });
+Route::prefix('home')->name('home.')->middleware('auth')->group(function () {
+    Route::resource('restaurants', RestaurantController::class);
+    // Route::resource('table', \App\Http\Controllers\Home\TableController::class);
+    // Route::resource('menuItem', \App\Http\Controllers\Home\MenuItemController::class);
+});
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

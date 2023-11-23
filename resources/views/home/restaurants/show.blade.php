@@ -38,11 +38,11 @@
         <div class="mt-4 space-x-4">
             <!-- Edit Restaurant Link -->
             <!-- Add route('restaurants.edit', ['restaurant' => $restaurant->id]) -->
-            <a class="text-blue-500 hover:underline" href="#">Edit Restaurant</a>
+            <a class="text-blue-500 hover:underline" href="{{route('home.restaurants.edit', ['restaurant' => $restaurant->id])}}">Edit Restaurant</a>
 
             <!-- Delete Restaurant Form -->
             <!-- Add route('restaurants.destroy', ['restaurant' => $restaurant->id]) -->
-            <form action="#" method="POST" class="inline">
+            <form :action="route('home.restaurants.destroy', ['id' => $restaurant->id])" method="POST" class="inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="text-red-500 hover:underline">Delete Restaurant</button>
