@@ -21,6 +21,6 @@ class InputLabel extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.input-label');
+        return view('Components.input-label');
     }
 }

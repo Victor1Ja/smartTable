@@ -21,6 +21,6 @@ class InputError extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.input-error');
+        return view('Components.input-error');
     }
 }

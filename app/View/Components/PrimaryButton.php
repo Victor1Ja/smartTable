@@ -21,6 +21,6 @@ class PrimaryButton extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.primary-button');
+        return view('Components.primary-button');
     }
 }

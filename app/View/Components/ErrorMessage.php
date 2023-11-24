@@ -21,6 +21,6 @@ class ErrorMessage extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.error-message');
+        return view('Components.error-message');
     }
 }

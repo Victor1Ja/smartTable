@@ -21,6 +21,6 @@ class SessionAuthStatus extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.session-auth-status');
+        return view('Components.session-auth-status');
     }
 }

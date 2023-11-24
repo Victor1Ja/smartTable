@@ -21,6 +21,6 @@ class TextareaField extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.textarea-field');
+        return view('Components.textarea-field');
     }
 }
