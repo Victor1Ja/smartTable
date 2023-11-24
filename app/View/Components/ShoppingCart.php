@@ -24,6 +24,6 @@ class ShoppingCart extends Component
     {
 
         $cartItems = Cart::getAll();
-        return view('components.shopping-cart', compact('cartItems'));
+        return view('Components.shopping-cart', compact('cartItems'));
     }
 }
