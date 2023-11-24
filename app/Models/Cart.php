@@ -9,48 +9,82 @@ use Illuminate\Http\Request;
 class Cart extends Model
 {
     use HasFactory;
-    public static function getAll(Request $request)
+    public static function getAll()
     {
         // Retrieve cart items from the session
-        $cartItems = $request->session()->get('cart', []);
+        $cartItems = session()->get('cart', []);
 
         return $cartItems;
     }
 
-    public static function store(Request $request)
+    public static function clear()
     {
-        // Validate the request
-        $request->validate([
-            'menu_item_id' => 'required|exists:menu_items,id',
-            'quantity' => 'required|integer|min:1',
-        ]);
+        // Clear all cart items from the session
+        session()->forget('cart');
+    }
+
+    public static function amountItem($id)
+    {
+        $cartItems = session()->get('cart', []);
+        $amount = 0;
+        foreach ($cartItems as $cartItem) {
+            if ($cartItem['menu_item_id'] == $id) {
+                $amount = $cartItem['quantity'];
+                break;
+            }
+        }
+        return $amount;
+    }
+
+    public static function addItem($item)
+    {
+        if ($item->quantity == 0) {
+            throw new \Exception('Quantity must be greater than 0');
+        }
+
 
         // Retrieve cart items from the session
-        $cartItems = $request->session()->get('cart', []);
-        $price = MenuItem::find($request->menu_item_id)->price;
-        // Add the new item to the cart
-        $cartItems[] = [
-            'menu_item_id' => $request->menu_item_id,
-            'quantity' => $request->quantity,
-            'price' =>  $price
-        ];
+        $cartItems = session()->get('cart', []);
+        $menuItem = MenuItem::find($item->menu_item_id);
+        if ($menuItem == null) {
+            throw new \Exception('Menu item not found');
+        }
 
+        if ($cartItems != null) {
+            foreach ($cartItems as $cartItem) {
+                if ($cartItem['menu_item_id'] == $item->menu_item_id) {
+                    $cartItem['quantity'] += $item->quantity;
+                    $cartItem['price'] = $cartItem['quantity'];
+                    break;
+                }
+            }
+        } else {
+            $cartItems[] = [
+                'menu_item_id' => $item->menu_item_id,
+                'quantity' => $item->quantity,
+                'price' =>  $menuItem->price
+            ];
+        }
         // Store the updated cart items back to the session
-        $request->session()->put('cart', $cartItems);
+        session()->put('cart', $cartItems);
 
         return $cartItems;
     }
 
-    public static function remove(Request $request, $index)
+    public static function removeOne($index)
     {
         // Retrieve cart items from the session
-        $cartItems = $request->session()->get('cart', []);
+        $cartItems = session()->get('cart', []);
 
-        // Remove the item from the cart
-        unset($cartItems[$index]);
-
+        // Remove one the item from the cart
+        if (isset($cartItems[$index])) {
+            $cartItems[$index]['quantity'] -= 1;
+        }
+        if ($cartItems[$index]['quantity'] == 0) {
+            unset($cartItems[$index]);
+        }
         // Store the updated cart items back to the session
-        $request->session()->put('cart', array_values($cartItems));
+        session()->put('cart', array_values($cartItems));
 
         return $cartItems;
     }
