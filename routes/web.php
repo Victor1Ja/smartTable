@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MenuItemController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //* Public routes
 
 // Welcome route
-Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'welcome'])->name('welcome');
+Route::get('/', [\App\Http\Controllers\RestaurantController::class, 'index'])->name('welcome');
 
 // Restaurant routes
 Route::get('/restaurants', [\App\Http\Controllers\RestaurantController::class, 'index'])->name('restaurants.index');
@@ -42,13 +43,13 @@ Route::prefix('home')->name('home.')->middleware('auth')->group(function () {
     Route::resource('tables', TableController::class);
 });
 
+// Admin User routes
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'is.admin'])->group(function () {
+    Route::resource('orders', OrdersController::class);
+});
+
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-// Admin User routes
-// Route::name('admin.')->middleware(['auth', 'is.admin'])->group(function () {
-//     Route::resource('/admin/categories', \App\Http\Controllers\AdminCategoryController::class);
 // });

@@ -18,7 +18,6 @@ class TableFactory extends Factory
     public function definition(): array
     {
         $restaurantId = $this->faker->randomDigitNotZero;
-        $tablesAmount = Table::where('restaurantID', $restaurantId)->count();
         return [
             'restaurantID' => $restaurantId,
             'number' => $this->faker->numberBetween(1, 100),

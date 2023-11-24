@@ -15,14 +15,13 @@ class SiteLayoutNavbar extends Component
     public function __construct()
     {
         $this->menu_items = [
-            ['label' => 'Welcome', 'route' => 'welcome', 'url' => null,],
             ['label' => 'Restaurants', 'route' => 'restaurants.index', 'url' => null,],
             ['label' => 'About', 'route' => 'welcome', 'url' => null,],
             ['label' => 'Contact', 'route' => 'welcome', 'url' => null,],
         ];
         $this->home_menu_items = [];
 
-        $this->admin_menu_items = [];
+        $this->admin_menu_items = [['label' => 'Orders', 'route' => 'admin.orders.index', 'url' => null,],];
     }
 
     public function render(): View|Closure|string
