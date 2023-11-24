@@ -41,6 +41,6 @@ class SimpleCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.simple-card');
+        return view('Components.simple-card');
     }
 }
