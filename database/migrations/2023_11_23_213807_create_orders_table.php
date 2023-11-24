@@ -14,18 +14,22 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tableID');
+            $table->unsignedBigInteger('userID');
             $table->string('status');
             // $table->unsignedBigInteger('staffID')->nullable();
             $table->timestamps();
 
             // Define foreign key relationship with the Restaurant model
             $table->foreign('tableID')->references('id')->on('restaurant_tables');
+            // $table->foreign('staffID')->references('id')->on('staff');
+            $table->foreign('userID')->references('id')->on('users');
         });
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('orderID');
             $table->unsignedBigInteger('menuItemID');
             $table->unsignedInteger('quantity');
+            $table->string('status');
             $table->timestamps();
 
             // Define foreign key relationship with the Restaurant model

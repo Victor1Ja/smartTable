@@ -12,10 +12,13 @@
     <ul>
         @foreach ($order->orderItems as $item)
         <li>
-            {{ $item->menu_item->name }} - Quantity: {{ $item->quantity }} - Status: {{ $item->status }}
+            {{ $item->menuItem->name }} - Quantity: {{ $item->quantity }} - Status: {{ $item->status }} - Price: {{ $item->menuItem->price }}
             {{-- Add other order item details as needed --}}
         </li>
         @endforeach
+        <li>
+            <strong>Total: {{ $total }}</strong>
+        </li>
     </ul>
     @else
     <p>No items in this order.</p>

@@ -38,6 +38,7 @@ Route::get('/tables/{id}', [\App\Http\Controllers\TableController::class, 'show'
 require __DIR__ . '/auth.php';
 
 Route::prefix('home')->name('home.')->middleware('auth')->group(function () {
+    Route::resource('orders', OrdersController::class)->only(['removeItem', 'addItem']);
     Route::resource('restaurants', RestaurantController::class);
     Route::resource('menuItems', MenuItemController::class);
     Route::resource('tables', TableController::class);

@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\OrderItem;
-use App\Models\OrderItemItem;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderItemFactory extends Factory
@@ -26,6 +25,7 @@ class OrderItemFactory extends Factory
             'orderID' => $this->faker->numberBetween(1, 10),
             'menuItemID' => $this->faker->numberBetween(1, 10),
             'quantity' => $this->faker->randomDigit,
+            'status' => $this->faker->randomElement(['pending', 'processing', 'completed']),
         ];
     }
 }

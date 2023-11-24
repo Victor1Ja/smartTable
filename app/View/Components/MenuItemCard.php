@@ -21,12 +21,11 @@ class MenuItemCard extends Component
         $this->menuItem = $menuItem;
         // $this->amount = Cart::getAll()->where('menu_item_id', $menuItem->id)->first()->amount;
         // on array
-        $this->amount = Cart::amountItem($menuItem->id);
     }
 
     public function reRender()
     {
-        $this->amount = Cart::amountItem($this->menuItem->id);
+        $this->amount = 0; //Not working
 
         return $this->render();
     }

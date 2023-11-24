@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Orders;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
@@ -11,16 +12,20 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Orders::getAllOrders();
-
         return view('admin.orders.index', compact('orders'));
     }
 
     public function show($id)
     {
         $order = Orders::getOrderWithItemsById($id);
-        $orderItems = $order->orderItems;
 
-        return view('admin.orders.show', compact('order', 'orderItems'));
+        $orderItems = $order->orderItems;
+        $total = 0;
+        foreach ($orderItems as $item) {
+            $total += $item->menuItem->price * $item->quantity;
+        }
+
+        return view('admin.orders.show', compact('order', 'orderItems', 'total'));
     }
 
     public function create()
@@ -53,10 +58,16 @@ class OrdersController extends Controller
         return redirect()->route('admin.orders.index')->with('success', 'Order deleted successfully.');
     }
 
-    public function addItem(Orders $order, Request $request)
+    public function addItem(int $orderId, int $menuItemId)
     {
-        $updatedOrder = Orders::addItemToOrder($order, $request);
+        $updatedOrder = Orders::addItemToOrder($orderId,  $menuItemId);
 
-        return redirect()->route('admin.orders.edit', ['order' => $updatedOrder->id])->with('success', 'Item added to the order successfully.');
+        return back();
+    }
+    public function removeItem(int $orderId, int $menuItemId)
+    {
+        $updatedOrder = Orders::removeItemToOrder($orderId, $menuItemId);
+
+        return back();
     }
 }

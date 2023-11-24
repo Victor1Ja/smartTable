@@ -14,6 +14,7 @@ class OrderItem extends Model
         'orderID',
         'menuItemID',
         'quantity',
+        'status',
         // 'specialRequests', // Uncomment if special requests are required
     ];
 

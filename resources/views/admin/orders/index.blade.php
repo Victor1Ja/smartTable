@@ -9,12 +9,8 @@
             <h3 class="text-lg font-semibold text-gray-800">Order #{{ $order->id }}</h3>
             <p class="text-sm text-gray-600">Status: {{ ucfirst($order->status) }}</p>
 
-            <!-- Display Order Items -->
-            <ul>
-                @foreach($order->orderItems as $item)
-                <li>{{ $item->quantity }}x {{ $item->menu_item->name }}</li>
-                @endforeach
-            </ul>
+            <!-- Display Amount of items and total cost -->
+            <p class="text-sm text-gray-600">Items: {{ $order->orderItems->count() }}</p>
 
             <a href="{{ route('admin.orders.show', ['order' => $order->id]) }}" class="text-blue-500 hover:underline">View Details</a>
         </div>
