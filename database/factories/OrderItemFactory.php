@@ -22,8 +22,8 @@ class OrderItemFactory extends Factory
     public function definition()
     {
         return [
-            'orderID' => $this->faker->numberBetween(1, 10),
-            'menuItemID' => $this->faker->numberBetween(1, 10),
+            'order_id' => $this->faker->numberBetween(1, 10),
+            'menuItem_id' => $this->faker->numberBetween(1, 10),
             'quantity' => $this->faker->randomDigit,
             'status' => $this->faker->randomElement(['pending', 'processing', 'completed']),
         ];

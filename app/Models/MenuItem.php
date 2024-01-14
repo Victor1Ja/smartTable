@@ -17,7 +17,7 @@ class MenuItem extends Model
 
     // Define the fillable fields for mass assignment
     protected $fillable = [
-        'restaurantID',
+        'restaurant_id',
         'name',
         'description',
         'price',
@@ -28,6 +28,6 @@ class MenuItem extends Model
     // Define the relationship with the Restaurant model
     public function restaurant()
     {
-        return $this->belongsTo(Restaurant::class, 'restaurantID');
+        return $this->belongsTo(Restaurant::class, 'restaurant_id');
     }
 }

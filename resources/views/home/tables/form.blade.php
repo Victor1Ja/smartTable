@@ -9,7 +9,7 @@
         @endif
 
         <!-- Restaurant ID (Hidden Input) -->
-        <input type="hidden" name="restaurantID" value="{{ isset($table) ? $table->id : $restaurantId }}" />
+        <input type="hidden" name="restaurant_id" value="{{ isset($table) ? $table->id : $restaurantId }}" />
 
         <!-- Table Number -->
         <x-input-field name="number" label="Table Number" placeholder="Enter table number" value="{{ isset($table) ? $table->number : '' }}" />

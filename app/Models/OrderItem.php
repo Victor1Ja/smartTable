@@ -11,8 +11,8 @@ class OrderItem extends Model
 
     // Define the fillable fields
     protected $fillable = [
-        'orderID',
-        'menuItemID',
+        'order_id',
+        'menuItem_id',
         'quantity',
         'status',
         // 'specialRequests', // Uncomment if special requests are required
@@ -23,10 +23,10 @@ class OrderItem extends Model
     // Define the relationship with the RestaurantTable model
     public function order()
     {
-        return $this->belongsTo(Orders::class, 'orderID');
+        return $this->belongsTo(Orders::class, 'order_id');
     }
     public function menuItem()
     {
-        return $this->belongsTo(MenuItem::class, 'menuItemID');
+        return $this->belongsTo(MenuItem::class, 'menuItem_id');
     }
 }

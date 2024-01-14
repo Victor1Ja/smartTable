@@ -10,7 +10,7 @@ class MenuItemController extends Controller
     // Index method to list all menu items
     public function index($restaurantId)
     {
-        $menuItems = MenuItem::all()->where('restaurantID', $restaurantId);
+        $menuItems = MenuItem::all()->where('restaurant_id', $restaurantId);
         return view('home.menuItems.index', compact('menuItems', 'restaurantId'));
     }
 
@@ -24,8 +24,8 @@ class MenuItemController extends Controller
     // Create method to show the create form
     public function create(Request $request)
     {
-        $restaurantID = $request->restaurantID;
-        return view('home.menuItems.form', compact('restaurantID'));
+        $restaurant_id = $request->restaurant_id;
+        return view('home.menuItems.form', compact('restaurant_id'));
     }
 
     /**
@@ -37,7 +37,7 @@ class MenuItemController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'restaurantID' => 'required|exists:restaurants,id', // Ensure the restaurant exists
+            'restaurant_id' => 'required|exists:restaurants,id', // Ensure the restaurant exists
             'name' => 'required|string',
             'description' => 'required|string',
             'price' => 'required|numeric',

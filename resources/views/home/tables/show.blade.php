@@ -1,7 +1,7 @@
 <x-site-layout title="TABLE - {{ $table->number }}">
 
     <!-- Back to Restaurant Link -->
-    <a class="underline" href="{{ route('restaurants.show', ['id' => $table->restaurantID])}}">Back to Restaurant</a>
+    <a class="underline" href="{{ route('restaurants.show', ['id' => $table->restaurant_id])}}">Back to Restaurant</a>
 
     <!-- Table Details Section -->
     <div class="mt-4">

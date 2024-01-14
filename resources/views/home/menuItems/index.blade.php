@@ -5,7 +5,7 @@
         {{-- Add New MenuItems Button for Admin --}}
         @auth
         @if(auth()->user()->is_admin)
-        <a href="{{route('home.menuItems.create', ['restaurantID' => $restaurantId])}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <a href="{{route('home.menuItems.create', ['restaurant_id' => $restaurantId])}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Add New MenuItem
         </a>
         @endif

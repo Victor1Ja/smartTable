@@ -13,28 +13,28 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('tableID');
-            $table->unsignedBigInteger('userID');
+            $table->unsignedBigInteger('table_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('status');
             // $table->unsignedBigInteger('staffID')->nullable();
             $table->timestamps();
 
             // Define foreign key relationship with the Restaurant model
-            $table->foreign('tableID')->references('id')->on('restaurant_tables');
+            $table->foreign('table_id')->references('id')->on('restaurant_tables');
             // $table->foreign('staffID')->references('id')->on('staff');
-            $table->foreign('userID')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('orderID');
-            $table->unsignedBigInteger('menuItemID');
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('menuItem_id');
             $table->unsignedInteger('quantity');
             $table->string('status');
             $table->timestamps();
 
             // Define foreign key relationship with the Restaurant model
-            $table->foreign('orderID')->references('id')->on('orders');
-            $table->foreign('menuItemID')->references('id')->on('menu_items');
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('menuItem_id')->references('id')->on('menu_items');
         });
     }
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedBigInteger('restaurantID');
+            $table->unsignedBigInteger('restaurant_id');
             $table->string('name');
             $table->text('description');
             $table->decimal('price', 8, 2);
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Define foreign key relationship with the Restaurant model
-            $table->foreign('restaurantID')->references('id')->on('restaurants');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants');
         });
     }
 

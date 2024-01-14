@@ -12,7 +12,7 @@ class Orders extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tableID',
+        'table_id',
         'status',
         // 'staffID', // Uncomment if staff ID is nullable
     ];
@@ -20,17 +20,17 @@ class Orders extends Model
     // Define the relationship with the RestaurantTable model
     public function table()
     {
-        return $this->belongsTo(RestaurantTable::class, 'tableID');
+        return $this->belongsTo(RestaurantTable::class, 'table_id');
     }
 
     public function orderItems()
     {
-        return $this->hasMany(OrderItem::class, 'orderID');
+        return $this->hasMany(OrderItem::class, 'order_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'userID');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public static function getAllOrders()
@@ -92,7 +92,7 @@ class Orders extends Model
 
         // Check if the user is an admin or the owner of the order
         $user = Auth::user();
-        if (!$user->is_admin && $user->id !== $order->userID) {
+        if (!$user->is_admin && $user->id !== $order->user_id) {
             throw new \Exception('Cannot Add an item from an order that is not yours');
         }
 
@@ -122,14 +122,14 @@ class Orders extends Model
         // Validation rules for removing an item
 
         // Find the order item
-        $orderItem = OrderItem::with('order')->where('orderID', $orderId)->where('menu_item_id', $menuItemId)->firstOrFail();
+        $orderItem = OrderItem::with('order')->where('order_id', $orderId)->where('menu_item_id', $menuItemId)->firstOrFail();
         if ($orderItem->order->status !== 'pending') {
             throw new \Exception('Cannot remove an item from an order that is not pending');
         }
 
         // Check if the user is an admin or the owner of the order
         $user = Auth::user();
-        if (!$user->is_admin && $user->id !== $orderItem->order->userID) {
+        if (!$user->is_admin && $user->id !== $orderItem->order->user_id) {
             throw new \Exception('Cannot remove an item from an order that is not yours');
         }
 
@@ -166,7 +166,7 @@ class Orders extends Model
     {
         // Get the current order
         $user = Auth::user();
-        $order = Orders::with('orderItems')->where('userID', $user->id)->whereNot('status', 'completed')->first();
+        $order = Orders::with('orderItems')->where('user_id', $user->id)->whereNot('status', 'completed')->first();
         // if (!$order) {
         //     throw new \Exception('No pending order found');
         // }

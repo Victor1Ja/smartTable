@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('restaurant_tables', function (Blueprint $table) {
             $table->id('id');
-            $table->unsignedBigInteger('restaurantID');
+            $table->unsignedBigInteger('restaurant_id');
             $table->unsignedInteger('number')->nullable();
             $table->string('location')->nullable();
             $table->timestamps();
 
             // Define foreign key relationship with the Restaurant model
-            $table->foreign('restaurantID')->references('id')->on('restaurants');
+            $table->foreign('restaurant_id')->references('id')->on('restaurants');
         });
     }
 

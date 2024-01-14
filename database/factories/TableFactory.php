@@ -19,7 +19,7 @@ class TableFactory extends Factory
     {
         $restaurantId = $this->faker->randomDigitNotZero;
         return [
-            'restaurantID' => $restaurantId,
+            'restaurant_id' => $restaurantId,
             'number' => $this->faker->numberBetween(1, 100),
             'location' => $this->faker->word,
         ];

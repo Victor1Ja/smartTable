@@ -14,7 +14,7 @@ class TableController extends Controller
     {
         $from = [255, 0, 0];
         $to = [0, 0, 255];
-        $tables = Table::all()->where('restaurantID', $id);
+        $tables = Table::all()->where('restaurant_id', $id);
         $restaurantId = $id;
         $number = 0;
         foreach ($tables as $table) {
@@ -58,7 +58,7 @@ class TableController extends Controller
         $table = Table::all()->find($id)->loadMissing('restaurant');
         $table->ray();
 
-        $menuItems = MenuItem::all()->where('restaurantID', $table->restaurantID);
+        $menuItems = MenuItem::all()->where('restaurant_id', $table->restaurant_id);
 
         return view('home.tables.show', compact('table', 'menuItems'));
     }
@@ -66,7 +66,7 @@ class TableController extends Controller
     // Create method to show the create form
     public function create(Request $request)
     {
-        $restaurantId = $request->restaurantID;
+        $restaurantId = $request->restaurant_id;
         return view('home.tables.form', compact('restaurantId'));
     }
 
@@ -79,7 +79,7 @@ class TableController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'restaurantID' => 'required|exists:restaurants,id', // Ensure the restaurant exists
+            'restaurant_id' => 'required|exists:restaurants,id', // Ensure the restaurant exists
             'number' => 'required|integer',
             'location' => 'nullable|string',
         ]);
