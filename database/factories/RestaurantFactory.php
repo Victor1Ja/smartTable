@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,5 +23,22 @@ class RestaurantFactory extends Factory
             'contactInformation' => $this->faker->phoneNumber,
             'operatingHours' => $this->faker->time,
         ];
+    }
+    public function configure()
+    {
+        return $this->afterCreating(function (Restaurant $restaurant) {
+            return $restaurant;
+        });
+    }
+
+    // Solution from https://laracasts.com/discuss/channels/testing/how-to-disable-factory-callbacks
+    public function withImages(): self
+    {
+        return $this->afterCreating(function (Restaurant $restaurant) {
+            $url = 'https://loremflickr.com/320/240';
+            $restaurant
+                ->addMediaFromUrl($url)
+                ->toMediaCollection("restaurant-images");
+        });
     }
 }
