@@ -7,7 +7,7 @@
     <div class="mt-4">
 
         <!-- Logo -->
-        <img src="{{ $restaurant->imageUrl ?? 'https://via.placeholder.com/640x480.png/00ff77?text=No+Image'}}" alt="{{ $restaurant->name }} Logo" class="w-24 h-24 object-contain mb-4">
+        <img src="{{$restaurant->getImageUrl('preview')}}" alt="{{ $restaurant->name }} Logo" class="w-24 h-24 object-contain mb-4">
 
         <!-- Name -->
         <h1 class="text-2xl font-bold">{{ $restaurant->name }}</h1>

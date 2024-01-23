@@ -10,7 +10,8 @@ class RestaurantController extends Controller
     // Index method to list all restaurants
     public function index()
     {
-        $restaurants = Restaurant::all();
+        $restaurants = Restaurant::with(['media'])->get();
+
         return view('home.restaurants.index', compact('restaurants'));
     }
 

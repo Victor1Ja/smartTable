@@ -10,7 +10,7 @@ class MenuItemController extends Controller
     // Index method to list all menu items
     public function index($restaurantId)
     {
-        $menuItems = MenuItem::all()->where('restaurant_id', $restaurantId);
+        $menuItems = MenuItem::with('media')->where('restaurant_id', $restaurantId)->get();
         return view('home.menuItems.index', compact('menuItems', 'restaurantId'));
     }
 

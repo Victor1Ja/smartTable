@@ -14,7 +14,7 @@
 
     <div class="grid grid-cols-3 gap-4">
         @foreach($restaurants as $restaurant)
-        <x-simple-card svg='' imageUrl="https://via.placeholder.com/640x480.png/00ff77?text=No+Image" :title="$restaurant->name" url="{{route('restaurants.show',['id'=> $restaurant->id ])}}" subtitle='' />
+        <x-simple-card svg='' imageUrl="{{$restaurant->getImageUrl('preview')}}" :title="$restaurant->name" url="{{route('restaurants.show',['id'=> $restaurant->id ])}}" subtitle='' />
         @endforeach
     </div>
 </x-site-layout>
