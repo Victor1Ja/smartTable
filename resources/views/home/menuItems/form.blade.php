@@ -17,7 +17,7 @@
         <br />
 
         <!-- Description -->
-        <x-textarea-field name="description" label="Description" placeholder="Enter menu item description" value="{{ isset($menuItem) ? $menuItem->description : '' }}" />
+        <x-input-field name="description" label="Description" placeholder="Enter menu item description" value="{{ isset($menuItem) ? $menuItem->description : '' }}" />
 
         <br />
 
