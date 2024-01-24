@@ -56,9 +56,8 @@ class TableController extends Controller
     public function show($id)
     {
         $table = Table::all()->find($id)->loadMissing('restaurant');
-        $table->ray();
 
-        $menuItems = MenuItem::all()->where('restaurant_id', $table->restaurant_id);
+        $menuItems = MenuItem::where('restaurant_id', $table->restaurant_id)->with('media')->get();
 
         return view('home.tables.show', compact('table', 'menuItems'));
     }
