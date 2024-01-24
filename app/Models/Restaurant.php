@@ -53,9 +53,6 @@ class Restaurant extends Model implements HasMedia
     }
     public function getImageUrl(string $conversion): string
     {
-        if (!$this->media->isEmpty())
-            ray($this->media->first()->getUrl($conversion));
-
         return ($this->media->isNotEmpty())
             ? $this->media->first()->getUrl($conversion)
             : '/media/default/conversions/default-' . $conversion . '.jpg';
