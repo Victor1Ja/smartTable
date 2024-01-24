@@ -24,6 +24,8 @@ class SendEmailUponRegistration
     public function handle(object $event): void
     {
 
+        return;
+
         $event->user->notify(new WelcomeNewUser());
 
         $admin = User::where('is_admin', true)->first();
