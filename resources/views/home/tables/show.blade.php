@@ -34,7 +34,7 @@
             @else
             <div class="grid grid-cols-3 gap-4">
                 @foreach ($menuItems as $menuItem)
-                <x-menu-item-card :menuItem="$menuItem" />
+                <livewire:menu-item-component :menuItem="$menuItem" />
                 @endforeach
             </div>
             @endif

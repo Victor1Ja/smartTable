@@ -30,7 +30,7 @@
                         </svg>
                     </button>
                     @auth
-                    <x-shopping-cart />
+                    <livewire:cart-component />
                     @endauth
                     @guest
                     <!-- Shopping cart -->
