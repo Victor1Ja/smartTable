@@ -50,8 +50,17 @@ class MenuItemController extends Controller
         // if ($request->hasFile('image')) {
         //     $imagePath = $request->file('image')->store('menu_item_images', 'public');
         // }
-        $menuItem = MenuItem::create($request->all());
+        $menuItem = MenuItem::create([
+            'restaurant_id' => $request->restaurant_id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'category' => $request->category,
+        ]);
 
+        if ($request->hasFile('image')) {
+            $menuItem->addMediaFromRequest('image')->toMediaCollection();
+        }
         return redirect()->route('menuItems.show', ['id' => $menuItem->id])->with('success', 'Menu item created successfully.');
     }
 

@@ -35,23 +35,18 @@ class RestaurantController extends Controller
             'location' => ['required', 'min:3', 'max:255'],
             'contactInformation' => ['required', 'min:5', 'max:255'],
             'operatingHours' => ['required', 'min:5', 'max:255'],
-            // 'image' => ['file'],
+
         ]);
-
-        // $imagePath = null;
-
-        // if ($request->hasFile('image')) {
-        //     $imagePath = $request->file('image')->store('restaurant_images', 'public');
-        // }
 
         $restaurant = Restaurant::create([
             'name' => $request->name,
             'location' => $request->location,
             'contactInformation' => $request->contactInformation,
             'operatingHours' => $request->operatingHours,
-            // 'image_path' => $imagePath,
-            // Add more fields as needed
         ]);
+        if ($request->hasFile('image')) {
+            $restaurant->addMediaFromRequest('image')->toMediaCollection();
+        }
 
         return redirect()->route('restaurants.show', ['id' => $restaurant->id])
             ->with('success', 'Restaurant created successfully');
