@@ -19,7 +19,7 @@
             @foreach ($content as $id => $item)
             <p class="text-2xl text-right mb-2 ">
                 <button class="text-sm p-2 border-2 rounded border-gray-200 hover:border-gray-300 bg-gray-200 hover:bg-gray-300" wire:click="updateCartItem({{ $id }}, 'minus')"> - </button>
-                {{ $item->get('name') }} x {{ $item->get('quantity') }} : {{ $item->get('price')$ }}
+                {{ $item->get('name') }} x {{ $item->get('quantity') }} : {{ $item->get('price')}}$
                 <button class="text-sm p-2 border-2 rounded border-gray-200 hover:border-gray-300 bg-gray-200 hover:bg-gray-300" wire:click="updateCartItem({{ $id }}, 'plus')"> + </button>
                 <button class="text-sm p-2 border-2 rounded border-gray-500 hover:border-gray-600 bg-gray-500 hover:bg-gray-600" wire:click="removeFromCart({{ $id }})">Remove</button>
             </p>
